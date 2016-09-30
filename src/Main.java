@@ -8,10 +8,7 @@ public class Main {
         int numberOfOrders = 5;
 
         //CLASE QUE RELLENE LA MATRIZ y blablabla
-        List<List<Integer>> inputMatrix = new ArrayList<List<Integer>>();
-
-        inputMatrix.add(new ArrayList<Integer>());
-
+        MatrixFromFile initialMatrix = new MatrixFromFile("file.txt");
 
 
         CalculatePermutation Permutation = new CalculatePermutation(numberOfOrders);
