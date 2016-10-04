@@ -40,9 +40,9 @@ public class MatrixFromFile
 
             List<Integer> orderTimes =  new ArrayList<>();
 
-            for (int i = 0; i < machNum; i++)
+            for (int i = 0; i < orderNum; i++)
             {
-                for (int j = 0; j < orderNum; j++)
+                for (int j = 0; j < machNum; j++)
                 {
                     System.out.print(i + ", " + j + ".\n");
                     scanner.nextInt();
