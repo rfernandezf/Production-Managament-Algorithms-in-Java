@@ -32,11 +32,11 @@ public class MatrixFromFile
 
             orderNum = scanner.nextInt();
 
-            System.out.print("Number of orders: " + orderNum + ".\n");
+            //System.out.print("Number of orders: " + orderNum + ".\n");
 
             machNum = scanner.nextInt();
 
-            System.out.print("Number of machines: " + machNum + ".\n");
+            //System.out.print("Number of machines: " + machNum + ".\n");
 
             List<Integer> orderTimes =  new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class MatrixFromFile
             {
                 for (int j = 0; j < machNum; j++)
                 {
-                    System.out.print(i + ", " + j + ".\n");
+                    //System.out.print(i + ", " + j + ".\n");
                     scanner.nextInt();
                     orderTimes.add(scanner.nextInt());
                 }
