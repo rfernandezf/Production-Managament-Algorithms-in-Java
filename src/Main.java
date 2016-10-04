@@ -7,13 +7,15 @@ public class Main {
         int numberOfMachines = 2;
         int numberOfOrders = 5;
 
-        //CLASE QUE RELLENE LA MATRIZ y blablabla
+
         MatrixFromFile initialMatrix = new MatrixFromFile("file.txt");
         List<List<Integer>> inputMatrix = new ArrayList<List<Integer>>();
-        //inputMatrix = initialMatrix.getMatrix();
-        //inputMatrix =
-        CalculatePermutation Permutation = new CalculatePermutation(numberOfOrders);
 
+        Permutation permutation = new Permutation(numberOfOrders);
+        System.out.println("Permutation: " + permutation.result());
+
+        SolveFlowShopPermutational outputMatrix = new SolveFlowShopPermutational(initialMatrix, permutation);
+        System.out.println("Result matrix: " + outputMatrix.result());
 
 
     }
