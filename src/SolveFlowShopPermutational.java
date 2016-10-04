@@ -17,14 +17,20 @@ public class SolveFlowShopPermutational {
             this.numberOfMachines = inputMatrix.getMachNum();
             this.numberOfOrders = inputMatrix.getOrderNum();
             this.permutation = permutation.result();
+            this.outputMatrix = inputMatrix.getInputMatrix();
 
             boolean processEnd = false;
-            List<Integer> machines = new ArrayList<Integer>();
+            List<Boolean> machines = new ArrayList<Boolean>();
             for (int i = 0; i < this.numberOfMachines; i++){
-                machines.add(0);
+                machines.add(false);
             }
 
             while (processEnd == false){
+                for (int i = 0; i< machines.size(); i++){
+                    if (machines.get(this.permutation.get(i)) == false){
+
+                    }
+                }
                 processEnd=true;
             }
 
