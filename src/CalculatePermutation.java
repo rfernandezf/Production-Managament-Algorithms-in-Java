@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 
 /**
  * Created by Plata on 30/09/2016.
@@ -7,6 +9,8 @@ import java.util.List;
 public class CalculatePermutation {
     private List<Integer> permutation = new ArrayList<Integer>();
     private int numberOfOrders;
+    private Random rnd = new Random();
+
 
     //Random numbers without repetition fron 0 to N, where N is numberOfOrders.
     public CalculatePermutation(int numberOfOrders){

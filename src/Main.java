@@ -9,8 +9,9 @@ public class Main {
 
         //CLASE QUE RELLENE LA MATRIZ y blablabla
         MatrixFromFile initialMatrix = new MatrixFromFile("file.txt");
-
-
+        List<List<Integer>> inputMatrix = new ArrayList<List<Integer>>();
+        //inputMatrix = initialMatrix.getMatrix();
+        //inputMatrix =
         CalculatePermutation Permutation = new CalculatePermutation(numberOfOrders);
 
 

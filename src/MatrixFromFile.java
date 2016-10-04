@@ -15,7 +15,7 @@ public class MatrixFromFile {
         this.inputMatrix.add(new ArrayList<Integer>());
     }
 
-    public List<List<Integer>> readMatrix(){
+    public List<List<Integer>> getMatrix(){
         return this.inputMatrix;
     }
 }
