@@ -1,21 +1,85 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Plata on 30/09/2016.
  */
-public class MatrixFromFile {
+public class MatrixFromFile
+{
 
-    private String fileToRead;
+    private int orderNum;
+    private int machNum;
     private List<List<Integer>> inputMatrix = new ArrayList<List<Integer>>();
 
 
-    public MatrixFromFile(String fileToRead){
-        this.fileToRead = fileToRead;
-        this.inputMatrix.add(new ArrayList<Integer>());
+    public MatrixFromFile(String fileToRead)
+    {
+        inputMatrix = readFile(new File(fileToRead));
     }
 
-    public List<List<Integer>> getMatrix(){
-        return this.inputMatrix;
+    public List<List<Integer>> readFile(File file)
+    {
+        List<List<Integer>> matrix = new ArrayList<>();
+
+        try
+        {
+            Scanner scanner = new Scanner(file);
+
+            orderNum = scanner.nextInt();
+
+            machNum = scanner.nextInt();
+
+            List<Integer> orderTimes =  new ArrayList<>();
+
+            for (int i = 0; i < machNum; i++)
+            {
+                for (int j = 0; j < orderNum; i++)
+                {
+                    scanner.nextInt();
+                    orderTimes.add(scanner.nextInt());
+                }
+                matrix.add(orderTimes);
+                orderTimes = new ArrayList<>();
+            }
+
+        } catch (FileNotFoundException exception)
+        {
+            System.out.println("File not found.");
+            exception.printStackTrace();
+        }
+
+        return matrix;
+    }
+
+
+
+    public int getOrderNum()
+    {
+        return orderNum;
+    }
+
+    public void setOrderNum(int orderNum)
+    {
+        this.orderNum = orderNum;
+    }
+
+    public int getMachNum()
+    {
+        return machNum;
+    }
+
+    public void setMachNum(int machNum)
+    {
+        this.machNum = machNum;
+    }
+
+    public List<List<Integer>> getInputMatrix()
+    {
+        return inputMatrix;
     }
 }
