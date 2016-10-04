@@ -8,8 +8,8 @@ public class Main {
         int numberOfOrders = 5;
 
 
-        MatrixFromFile initialMatrix = new MatrixFromFile("file.txt");
-        List<List<Integer>> inputMatrix = new ArrayList<List<Integer>>();
+        MatrixFromFile initialMatrix = new MatrixFromFile("rsc/ejem_clase1.txt");
+        System.out.println("Input matrix: " + initialMatrix.getInputMatrix());
 
         Permutation permutation = new Permutation(numberOfOrders);
         System.out.println("Permutation: " + permutation.result());

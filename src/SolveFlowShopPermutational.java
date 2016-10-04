@@ -11,8 +11,9 @@ public class SolveFlowShopPermutational {
         private List<Integer> permutation = new ArrayList<Integer>();
 
         public SolveFlowShopPermutational(MatrixFromFile inputMatrix, Permutation permutation){
-            this.inputMatrix = inputMatrix.getMatrix();
+            this.inputMatrix = inputMatrix.getInputMatrix();
             this.permutation = permutation.result();
+
 
 
         }
