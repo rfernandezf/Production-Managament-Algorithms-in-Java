@@ -6,31 +6,21 @@ import java.util.List;
  */
 public class SolveFlowShopPermutational {
 
-    private List<List<Integer>> inputMatrix = new ArrayList<List<Integer>>();
     private List<List<Integer>> outputMatrix = new ArrayList<List<Integer>>();
     private List<Integer> permutation = new ArrayList<Integer>();
     private int numberOfMachines;
-    private int numberOfOrders;
 
     public SolveFlowShopPermutational(MatrixFromFile inputMatrix, Permutation permutation) {
-        this.inputMatrix = inputMatrix.getInputMatrix();
         this.numberOfMachines = inputMatrix.getMachNum();
-        this.numberOfOrders = inputMatrix.getOrderNum();
         this.permutation = permutation.result();
         this.outputMatrix = inputMatrix.getInputMatrix();
-
-        boolean processEnd = false;
-        List<Boolean> machines = new ArrayList<Boolean>();
-        for (int i = 0; i < this.numberOfMachines; i++) {
-            machines.add(false);
-        }
 
         int[] currentTime;
         currentTime = new int[this.numberOfMachines];
         for (int i = 0; i < this.numberOfMachines; i++) {
             currentTime[i] = 0;
         }
-        int time = 0;
+        int time;
         for (int i = 0; i < this.permutation.size(); i++) {
             for (int j = 0; j < this.numberOfMachines; j++) {
                 if (j == 0) {
