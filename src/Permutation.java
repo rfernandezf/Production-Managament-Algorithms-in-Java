@@ -13,13 +13,13 @@ public class Permutation {
 
 
     //Random numbers without repetition from 0 to N, where N is numberOfOrders.
-    public Permutation(int numberOfOrders){
+    public Permutation(int numberOfOrders) {
         this.numberOfOrders = numberOfOrders;
 
-        while(this.permutation.size() < numberOfOrders){
+        while (this.permutation.size() < numberOfOrders) {
             int numberRandom = rnd.nextInt(numberOfOrders) + 1;
 
-            if(!this.permutation.contains(numberRandom)) {
+            if (!this.permutation.contains(numberRandom)) {
                 this.permutation.add(numberRandom);
             }
         }
@@ -27,7 +27,8 @@ public class Permutation {
 
     }
 
-    public List<Integer> result(){
+    public List<Integer> result() {
         return this.permutation;
     }
+
 }
