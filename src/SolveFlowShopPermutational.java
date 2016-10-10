@@ -25,14 +25,29 @@ public class SolveFlowShopPermutational {
                 machines.add(false);
             }
 
-            while (processEnd == false){
-                for (int i = 0; i< machines.size(); i++){
-                    if (machines.get(this.permutation.get(i)) == false){
+            int[] currentTime;
+            currentTime = new int[this.numberOfMachines];
+            for (int i = 0; i <this.numberOfMachines; i++){
+                currentTime[i] = 0;
+            }
+            int time = 0;
+                for (int i = 0; i< this.permutation.size(); i++){
+                    for(int j=0; j<this.numberOfMachines; j++) {
+                        if (j==0) {
+                            time = currentTime[0];
+                        }
+                        else{
+                            time = currentTime[j];
+                            if (time < currentTime[j-1]){
+                                time = currentTime[j-1];
+                            }
+                        }
+                            this.outputMatrix.get(this.permutation.get(i) - 1).set(j, time + this.outputMatrix.get(this.permutation.get(i) - 1).get(j));
+                            currentTime[j] = this.outputMatrix.get(this.permutation.get(i) - 1).get(j);
 
                     }
                 }
-                processEnd=true;
-            }
+
 
         }
 
