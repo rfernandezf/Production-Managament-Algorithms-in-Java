@@ -3,9 +3,6 @@ import java.util.List;
 import java.util.Random;
 
 
-/**
- * Created by Plata on 30/09/2016.
- */
 public class Permutation {
     private List<Integer> permutation = new ArrayList<Integer>();
     private Random rnd = new Random();

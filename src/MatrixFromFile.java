@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by Plata on 30/09/2016.
- */
-
 public class MatrixFromFile {
 
     private int orderNum;

@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Plata on 04/10/2016.
- */
 public class SolveFlowShopPermutational {
 
     private List<List<Integer>> outputMatrix = new ArrayList<List<Integer>>();
