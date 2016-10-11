@@ -4,21 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MatrixFromFile {
+public class MatrixFromFile
+{
 
     private int orderNum;
     private int machNum;
     private List<List<Integer>> inputMatrix = new ArrayList<List<Integer>>();
 
 
-    public MatrixFromFile(String fileToRead) {
+    public MatrixFromFile(String fileToRead)
+    {
         inputMatrix = readFile(new File(fileToRead));
     }
 
-    public List<List<Integer>> readFile(File file) {
+    public List<List<Integer>> readFile(File file)
+    {
         List<List<Integer>> matrix = new ArrayList<>();
 
-        try {
+        try
+        {
             Scanner scanner = new Scanner(file);
 
             orderNum = scanner.nextInt();
@@ -31,8 +35,10 @@ public class MatrixFromFile {
 
             List<Integer> orderTimes = new ArrayList<>();
 
-            for (int i = 0; i < orderNum; i++) {
-                for (int j = 0; j < machNum; j++) {
+            for (int i = 0; i < orderNum; i++)
+            {
+                for (int j = 0; j < machNum; j++)
+                {
                     //System.out.print(i + ", " + j + ".\n");
                     scanner.nextInt();
                     orderTimes.add(scanner.nextInt());
@@ -41,7 +47,8 @@ public class MatrixFromFile {
                 orderTimes = new ArrayList<>();
             }
 
-        } catch (FileNotFoundException exception) {
+        } catch (FileNotFoundException exception)
+        {
             System.out.println("File not found.");
             exception.printStackTrace();
         }
@@ -50,23 +57,47 @@ public class MatrixFromFile {
     }
 
 
-    public int getOrderNum() {
+    public int getOrderNum()
+    {
         return orderNum;
     }
 
-    public void setOrderNum(int orderNum) {
+    public void setOrderNum(int orderNum)
+    {
         this.orderNum = orderNum;
     }
 
-    public int getMachNum() {
+    public int getMachNum()
+    {
         return machNum;
     }
 
-    public void setMachNum(int machNum) {
+    public void setMachNum(int machNum)
+    {
         this.machNum = machNum;
     }
 
-    public List<List<Integer>> getInputMatrix() {
+    public List<List<Integer>> getInputMatrix()
+    {
         return inputMatrix;
+    }
+
+    public List<List<Integer>> cloneMatrix()
+    {
+        List<List<Integer>> clone = new ArrayList<>();
+        List<Integer> rowClone;
+        for (List<Integer> row : getInputMatrix())
+        {
+            rowClone = new ArrayList<>();
+
+            for (int number : row)
+            {
+                rowClone.add(number);
+            }
+
+            clone.add(rowClone);
+        }
+
+        return clone;
     }
 }

@@ -11,7 +11,7 @@ public class FlowShop
     public FlowShop(MatrixFromFile inputMatrix, List<Integer> permutation) {
         this.numberOfMachines = inputMatrix.getMachNum();
         this.permutation = permutation;
-        this.outputMatrix = inputMatrix.getInputMatrix();
+        this.outputMatrix = inputMatrix.cloneMatrix();
 
         int[] currentTime;
         currentTime = new int[this.numberOfMachines];

@@ -1,9 +1,14 @@
-public class Main {
+import java.util.List;
+import java.util.Scanner;
 
-    public static void main(String[] args) {
+public class Main
+{
+
+    public static void main(String[] args)
+    {
 
 
-        MatrixFromFile initialMatrix = new MatrixFromFile("rsc/ejem_clase1.txt");
+        MatrixFromFile initialMatrix = new MatrixFromFile("rsc/Doc11.txt");
 
         System.out.print("Number of orders: " + initialMatrix.getOrderNum() + ".\n");
         System.out.print("Number of machines: " + initialMatrix.getMachNum() + ".\n");
@@ -17,6 +22,13 @@ public class Main {
         System.out.println("Result matrix: " + outputMatrix.result());
 
         System.out.println("Fmed: " + outputMatrix.fmed());
+
+        System.out.println("\n\nRandom Search with 1000 iterations:\n");
+        List<Integer> randomSearchSolution = new RandomSearch(1000, initialMatrix).run();
+        System.out.println("Best solution: " + randomSearchSolution);
+        FlowShop randomSearchFlowshop = new FlowShop(initialMatrix, randomSearchSolution);
+        System.out.println(randomSearchFlowshop.result());
+        System.out.println("Fmed: " + randomSearchFlowshop.fmed());
     }
 
 }
