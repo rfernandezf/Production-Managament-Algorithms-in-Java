@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolveFlowShopPermutational {
+public class FlowShop
+{
 
     private List<List<Integer>> outputMatrix = new ArrayList<List<Integer>>();
     private List<Integer> permutation = new ArrayList<Integer>();
     private int numberOfMachines;
 
-    public SolveFlowShopPermutational(MatrixFromFile inputMatrix, Permutation permutation) {
+    public FlowShop(MatrixFromFile inputMatrix, RandomPermutation permutation) {
         this.numberOfMachines = inputMatrix.getMachNum();
         this.permutation = permutation.result();
         this.outputMatrix = inputMatrix.getInputMatrix();

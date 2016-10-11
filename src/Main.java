@@ -9,11 +9,11 @@ public class Main {
         System.out.print("Number of machines: " + initialMatrix.getMachNum() + ".\n");
         System.out.println("Input matrix: " + initialMatrix.getInputMatrix());
 
-        Permutation permutation = new Permutation(initialMatrix.getOrderNum());
-        System.out.println("Permutation: " + permutation.result());
+        RandomPermutation permutation = new RandomPermutation(initialMatrix.getOrderNum());
+        System.out.println("RandomPermutation: " + permutation.result());
 
 
-        SolveFlowShopPermutational outputMatrix = new SolveFlowShopPermutational(initialMatrix, permutation);
+        FlowShop outputMatrix = new FlowShop(initialMatrix, permutation);
         System.out.println("Result matrix: " + outputMatrix.result());
 
         System.out.println("Fmed: " + outputMatrix.fmed());
