@@ -15,6 +15,8 @@ public class Main {
 
         SolveFlowShopPermutational outputMatrix = new SolveFlowShopPermutational(initialMatrix, permutation);
         System.out.println("Result matrix: " + outputMatrix.result());
+
+        System.out.println("Fmed: " + outputMatrix.fmed());
     }
 
 }

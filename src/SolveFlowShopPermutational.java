@@ -40,4 +40,15 @@ public class SolveFlowShopPermutational {
     public List<List<Integer>> result() {
         return this.outputMatrix;
     }
+
+    public float fmed()
+    {
+        float sum = 0;
+        for (List<Integer> row : outputMatrix)
+        {
+            sum += row.get(row.size()-1);
+        }
+
+        return sum/outputMatrix.size();
+    }
 }
