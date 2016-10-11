@@ -8,9 +8,9 @@ public class FlowShop
     private List<Integer> permutation = new ArrayList<Integer>();
     private int numberOfMachines;
 
-    public FlowShop(MatrixFromFile inputMatrix, RandomPermutation permutation) {
+    public FlowShop(MatrixFromFile inputMatrix, List<Integer> permutation) {
         this.numberOfMachines = inputMatrix.getMachNum();
-        this.permutation = permutation.result();
+        this.permutation = permutation;
         this.outputMatrix = inputMatrix.getInputMatrix();
 
         int[] currentTime;

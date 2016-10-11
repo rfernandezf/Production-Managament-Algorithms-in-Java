@@ -13,7 +13,7 @@ public class Main {
         System.out.println("RandomPermutation: " + permutation.result());
 
 
-        FlowShop outputMatrix = new FlowShop(initialMatrix, permutation);
+        FlowShop outputMatrix = new FlowShop(initialMatrix, permutation.result());
         System.out.println("Result matrix: " + outputMatrix.result());
 
         System.out.println("Fmed: " + outputMatrix.fmed());
