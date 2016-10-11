@@ -27,7 +27,6 @@ public class Main
         List<Integer> randomSearchSolution = new RandomSearch(1000, initialMatrix).run();
         System.out.println("Best solution: " + randomSearchSolution);
         FlowShop randomSearchFlowshop = new FlowShop(initialMatrix, randomSearchSolution);
-        System.out.println(randomSearchFlowshop.result());
         System.out.println("Fmed: " + randomSearchFlowshop.fmed());
     }
 
