@@ -24,4 +24,17 @@ public class RandomPermutation
         return this.permutation;
     }
 
+    public List<Integer> clonePermutation()
+    {
+        List<Integer> clone = new ArrayList<>();
+
+
+            for (int number : result())
+            {
+                clone.add(number);
+            }
+
+
+        return clone;
+    }
 }
