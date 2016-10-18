@@ -1,5 +1,10 @@
+import firstbest.FirstBest;
+import flowshop.FlowShop;
+import flowshop.MatrixFromFile;
+import flowshop.RandomPermutation;
+import randomsearch.RandomSearch;
+
 import java.util.List;
-import java.util.Scanner;
 
 public class Main
 {
@@ -15,7 +20,7 @@ public class Main
         System.out.println("Input matrix: " + initialMatrix.getInputMatrix());
 
         RandomPermutation permutation = new RandomPermutation(initialMatrix.getOrderNum());
-        System.out.println("RandomPermutation: " + permutation.result());
+        System.out.println("flowshop.RandomPermutation: " + permutation.result());
 
 
         FlowShop outputMatrix = new FlowShop(initialMatrix, permutation.result());
@@ -24,7 +29,7 @@ public class Main
         System.out.println("Fmed: " + outputMatrix.fmed());
 
         System.out.println("\n\nRandom Search with 1000 iterations:\n");
-        List<Integer> randomSearchSolution = new RandomSearch(1000, initialMatrix).run();
+        List<Integer> randomSearchSolution = new RandomSearch(1000,initialMatrix).run();
         System.out.println("Best solution: " + randomSearchSolution);
         FlowShop randomSearchFlowshop = new FlowShop(initialMatrix, randomSearchSolution);
         System.out.println("Fmed: " + randomSearchFlowshop.fmed());

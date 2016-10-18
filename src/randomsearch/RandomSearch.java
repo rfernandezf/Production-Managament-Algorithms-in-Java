@@ -1,3 +1,8 @@
+package randomsearch;
+
+import flowshop.FlowShop;
+import flowshop.MatrixFromFile;
+
 import java.util.List;
 
 public class RandomSearch
