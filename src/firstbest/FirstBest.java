@@ -2,6 +2,7 @@ package firstbest;
 
 import flowshop.FlowShop;
 import flowshop.MatrixFromFile;
+import flowshop.RandomPermutation;
 
 import java.util.*;
 
