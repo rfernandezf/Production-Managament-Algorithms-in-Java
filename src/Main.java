@@ -8,7 +8,7 @@ public class Main
     {
 
 
-        MatrixFromFile initialMatrix = new MatrixFromFile("rsc/ejem_clase1.txt");
+        MatrixFromFile initialMatrix = new MatrixFromFile("rsc/Doc11.txt");
 
         System.out.print("Number of orders: " + initialMatrix.getOrderNum() + ".\n");
         System.out.print("Number of machines: " + initialMatrix.getMachNum() + ".\n");
@@ -29,11 +29,11 @@ public class Main
         FlowShop randomSearchFlowshop = new FlowShop(initialMatrix, randomSearchSolution);
         System.out.println("Fmed: " + randomSearchFlowshop.fmed());
 
-        System.out.println("\n\nFirst Best solution:\n");
+        System.out.println("\n\nFirst Best solution:");
+        System.out.println("Processing. Please wait...\n");
         List<Integer> firstBestSolution = new FirstBest(permutation, initialMatrix).run();
         System.out.println("Best solution: " + firstBestSolution);
         FlowShop firstBestFlowShop = new FlowShop(initialMatrix,firstBestSolution);
-        System.out.println(firstBestFlowShop.result());
         System.out.println("Fmed: " + firstBestFlowShop.fmed());
     }
 

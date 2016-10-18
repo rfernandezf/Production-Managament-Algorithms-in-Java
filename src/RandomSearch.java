@@ -21,7 +21,7 @@ public class RandomSearch
         FlowShop newFlowshop;
         for (int i = 1; i < numberOfIterations; i++)
         {
-            System.out.println("Iteration: " + i);
+
             newSolution = new RandomPermutation(numberOfOrders).result();
             newFlowshop = new FlowShop(inputMatrix, newSolution);
             if (newFlowshop.fmed() < bestFlowshop.fmed())
