@@ -11,8 +11,8 @@ import java.util.*;
  */
 public class FirstBest {
 
-    RandomPermutation randomPermutation;
-    MatrixFromFile inputMatrix;
+    private RandomPermutation randomPermutation;
+    private MatrixFromFile inputMatrix;
 
     public FirstBest(RandomPermutation randomPermutation, MatrixFromFile inputMatrix) {
         this.randomPermutation =randomPermutation;
