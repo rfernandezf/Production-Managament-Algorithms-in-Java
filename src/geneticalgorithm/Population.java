@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Population
+class Population
 {
     private List<Individual> individuals;
     private Random random = new Random();
     private MatrixFromFile matrix;
+
     private int indSize;
 
-    public Population(int size, MatrixFromFile matrixFromFile)
+    Population(int size, MatrixFromFile matrixFromFile)
     {
         this.matrix = matrixFromFile;
 
@@ -35,19 +36,6 @@ public class Population
         return individuals;
     }
 
-    /**
-     * Method that prints out the population.
-     */
-    public void print()
-    {
-        for (Individual ind : individuals)
-        {
-            System.out.print("X1:");
-            ind.print();
-        }
-
-        System.out.println();
-    }
 
     public Individual selectFitest()
     {
@@ -95,7 +83,7 @@ public class Population
     /**
      * Method that triggers a mutation in all the individuals.
      */
-    public void mutateAll()
+    private void mutateAll()
     {
         for (Individual ind : individuals)
         {
@@ -167,7 +155,7 @@ public class Population
             secondPoint = random.nextInt(indSize) + 1;
         }
 
-        for(int i = 0; i < firstPoint; i++)
+        for (int i = 0; i < firstPoint; i++)
         {
             chrom1.add(pa1.getChromosomes().get(i));
             chrom2.add(pa2.getChromosomes().get(i));
@@ -195,11 +183,35 @@ public class Population
     /**
      * Method that forces all individuals to calculate their fitness.
      */
-    private void updateFitness()
+    void updateFitness()
     {
         for (Individual ind : individuals)
         {
             ind.setFitness(new FlowShop(matrix, ind.getChromosomes()).fmed());
         }
+    }
+
+    Individual getBest()
+    {
+        Individual best = null;
+        for (Individual ind : individuals)
+        {
+            if (best == null)
+            {
+                best = ind;
+            }
+            else
+            {
+                if (best.getFitness() < ind.getFitness())
+                    best = ind;
+            }
+        }
+
+        return best;
+    }
+
+    public int getIndSize()
+    {
+        return indSize;
     }
 }

@@ -71,10 +71,10 @@ public class Individual
         Random random = new Random();
         if (mutationProb > random.nextInt(100) + 1)
         {
-            int chrom = random.nextInt(size) + 1;
-            int chrom2 = random.nextInt(size) + 1;
+            int chrom = random.nextInt(size);
+            int chrom2 = random.nextInt(size);
             while (chrom2 == chrom)
-                chrom2 = random.nextInt(size) + 1;
+                chrom2 = random.nextInt(size);
 
             int mutValue = chromosomes.get(chrom);
             int mutValue2 = chromosomes.get(chrom2);
