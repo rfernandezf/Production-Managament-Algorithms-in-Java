@@ -29,13 +29,18 @@ public class GeneticAlgorithm
         boolean solutionFound = false;
         Individual ind;
         float iterations = 0;
+        int lastPercent = 0;
         while (!solutionFound)
         {
             iterations++;
 
             population.newGenByTournament();
 
-            System.out.println((int)((iterations/itNumber)*100) + "%");
+
+            if((int)((iterations/itNumber)*100) > lastPercent) {
+                System.out.print((int) ((iterations / itNumber) * 100) + "%...");
+                lastPercent = (int) ((iterations / itNumber) * 100);
+            }
 
             if(iterations > itNumber)
             {

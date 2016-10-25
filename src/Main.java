@@ -2,6 +2,7 @@ import firstbest.FirstBest;
 import flowshop.FlowShop;
 import flowshop.MatrixFromFile;
 import flowshop.RandomPermutation;
+import geneticalgorithm.GeneticAlgorithm;
 import randomsearch.RandomSearch;
 import SimulatedAnnealing.SimulatedAnnealing;
 
@@ -13,7 +14,7 @@ public class Main
     public static void main(String[] args)
     {
 
-
+        long start;
         MatrixFromFile initialMatrix = new MatrixFromFile("rsc/Doc11.txt");
         //ejem_clase1.txt
 
@@ -38,17 +39,30 @@ public class Main
 
         System.out.println("\n\nFirst Best solution:");
         System.out.println("Processing. Please wait...\n");
+        start = System.currentTimeMillis();
         List<Integer> firstBestSolution = new FirstBest(permutation, initialMatrix).run();
+        System.out.println("Finished in: " + (System.currentTimeMillis() - start)/1000 + "s.");
         System.out.println("Best solution: " + firstBestSolution);
         FlowShop firstBestFlowShop = new FlowShop(initialMatrix,firstBestSolution);
         System.out.println("Fmed: " + firstBestFlowShop.fmed());
 
         System.out.println("\n\nSimulated Annealing solution:");
         System.out.println("Processing. Please wait...\n");
+        start = System.currentTimeMillis();
         List<Integer> simulatedAnnealingSolution = new SimulatedAnnealing(permutation, initialMatrix).run();
+        System.out.println("Finished in: " + (System.currentTimeMillis() - start)/1000 + "s.");
         System.out.println("Best solution: " + simulatedAnnealingSolution);
         FlowShop simulatedAnnealingFlowShop = new FlowShop(initialMatrix,simulatedAnnealingSolution);
         System.out.println("Fmed: " + simulatedAnnealingFlowShop.fmed());
+
+        System.out.println("\n\nGenetic Algorithm solution:");
+        System.out.println("Processing. Please wait...\n");
+        start = System.currentTimeMillis();
+        List<Integer> geneticSolution = new GeneticAlgorithm(initialMatrix).run();
+        System.out.println("Finished in: " + (System.currentTimeMillis() - start)/1000 + "s.");
+        System.out.println("Best solution: " + geneticSolution);
+        FlowShop geneticFlowShop = new FlowShop(initialMatrix,geneticSolution);
+        System.out.println("Fmed: " + geneticFlowShop.fmed());
 
 
     }
