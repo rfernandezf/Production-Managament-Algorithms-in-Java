@@ -10,7 +10,7 @@ public class Individual
     private List<Integer> chromosomes;
     private Random random = new Random();
     private int size;
-    private int fitness;
+    private float fitness;
     private int mutationProb;
 
     public Individual(RandomPermutation chromosomePermutation)
@@ -39,12 +39,12 @@ public class Individual
         return size;
     }
 
-    public int getFitness()
+    public float getFitness()
     {
         return fitness;
     }
 
-    public boolean setFitness(int fitness)
+    public boolean setFitness(float fitness)
     {
         this.fitness = fitness;
         return true;

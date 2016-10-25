@@ -1,6 +1,7 @@
 package geneticalgorithm;
 
 
+import flowshop.FlowShop;
 import flowshop.MatrixFromFile;
 import flowshop.RandomPermutation;
 
@@ -194,8 +195,11 @@ public class Population
     /**
      * Method that forces all individuals to calculate their fitness.
      */
-    public void updateFitness()
+    private void updateFitness()
     {
-
+        for (Individual ind : individuals)
+        {
+            ind.setFitness(new FlowShop(matrix, ind.getChromosomes()).fmed());
+        }
     }
 }
