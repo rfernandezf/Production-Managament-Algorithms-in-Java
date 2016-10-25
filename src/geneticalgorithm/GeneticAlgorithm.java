@@ -40,6 +40,7 @@ public class GeneticAlgorithm
             if((int)((iterations/itNumber)*100) > lastPercent) {
                 System.out.print((int) ((iterations / itNumber) * 100) + "%...");
                 lastPercent = (int) ((iterations / itNumber) * 100);
+                if (lastPercent % 10 == 0) System.out.print("\n");
             }
 
             if(iterations > itNumber)

@@ -38,8 +38,10 @@ public class SimulatedAnnealing{
         Random rnd = new Random();
         bestPermutation = randomPermutation.clonePermutation();
 
-        int temperature = (int)(new FlowShop(inputMatrix, this.randomPermutation.result()).fmed() *0.4);
-        System.out.println("Temperature: " + temperature);
+        float initialTemperature = (int)(new FlowShop(inputMatrix, this.randomPermutation.result()).fmed() *0.4);
+        float temperature = initialTemperature;
+        int lastPercent = 0;
+        System.out.println("Initial temperature: " + initialTemperature);
         while(temperature != 0) {
             //Initial values
 
@@ -97,17 +99,27 @@ public class SimulatedAnnealing{
             // If a random number between 0 and 1 < e^(-costDifference/temperature) OR costDifference <0..
             //actualSoution = candidateSolution
             if(rnd.nextFloat() < Math.exp(-costDifference/temperature) || (costDifference <0)){
+                //System.out.println("ME QUEDO LA MALA");
                 bestPermutation = permutations.get(bestFmedIndex);
+            }
+
+            else{
+                //System.out.println("ME QUEDO LA BUENA");
+                //bestPermutation =
             }
 
             //Decrease temperature (I can do it in other ways, i.e. exponentially...) (More accuracy than the linear method)
             temperature--;
 
+            if((int)((initialTemperature-temperature/initialTemperature)*100) > lastPercent) {
+                System.out.print((int)(((initialTemperature-temperature)/initialTemperature)*100) + "%...");
+                lastPercent = (int)((initialTemperature-temperature/initialTemperature)*100);
+                if (lastPercent % 10 == 0) System.out.print("\n");
+            }
+
             if(temperature == 0){
                 break;
             }
-
-            System.out.println(temperature);
 
 
         }
