@@ -11,13 +11,15 @@ import java.util.Random;
 public class Population
 {
     private List<Individual> individuals;
-    private List<Individual> individuals2d;
     private Random random = new Random();
     private MatrixFromFile matrix;
+    private int indSize;
 
-    public Population (int size, MatrixFromFile matrixFromFile)
+    public Population(int size, MatrixFromFile matrixFromFile)
     {
         this.matrix = matrixFromFile;
+
+        this.indSize = matrixFromFile.getOrderNum();
 
         individuals = new ArrayList<>(size);
 
@@ -27,7 +29,7 @@ public class Population
         }
     }
 
-    public List<Individual> getIndividuals ()
+    public List<Individual> getIndividuals()
     {
         return individuals;
     }
@@ -35,7 +37,7 @@ public class Population
     /**
      * Method that prints out the population.
      */
-    public void print ()
+    public void print()
     {
         for (Individual ind : individuals)
         {
@@ -51,7 +53,7 @@ public class Population
         Individual winner = new Individual(new RandomPermutation(matrix.getOrderNum()));
         winner.setFitness(999999999);
 
-        for (Individual ind: individuals)
+        for (Individual ind : individuals)
         {
             if (ind.getFitness() < winner.getFitness())
                 winner = ind;
@@ -105,13 +107,13 @@ public class Population
      *
      * @return arraylist with the selected individuals.
      */
-    private  List<Individual> tournamentSelection(List<Individual> candidates)
+    private List<Individual> tournamentSelection(List<Individual> candidates)
     {
         List<Individual> selected = new ArrayList<>();
         List<Integer> alreadySelected = new ArrayList<>();
         int next;
 
-        while(selected.size() < candidates.size()/2 + 1)
+        while (selected.size() < candidates.size() / 2 + 1)
         {
             next = random.nextInt(candidates.size());
             if (!alreadySelected.contains(next))
@@ -136,7 +138,7 @@ public class Population
         Individual winner = new Individual(new RandomPermutation(matrix.getOrderNum()));
         winner.setFitness(999999999);
 
-        for (Individual ind: participants)
+        for (Individual ind : participants)
         {
             if (ind.getFitness() < winner.getFitness())
                 winner = ind;
@@ -152,16 +154,47 @@ public class Population
      * @param pa2
      * @return the new individuals.
      */
-    private List<Individual> crossoverOX (Individual pa1, Individual pa2)
+    private List<Individual> crossoverOX(Individual pa1, Individual pa2)
     {
+        int firstPoint = random.nextInt(indSize) + 1;
+        int secondPoint = 0;
+        List<Integer> chrom1 = new ArrayList<>();
+        List<Integer> chrom2 = new ArrayList<>();
 
-        return new ArrayList<>();
+        while (secondPoint < firstPoint)
+        {
+            secondPoint = random.nextInt(indSize) + 1;
+        }
+
+        for(int i = 0; i < firstPoint; i++)
+        {
+            chrom1.add(pa1.getChromosomes().get(i));
+            chrom2.add(pa2.getChromosomes().get(i));
+        }
+
+        for (int i = firstPoint; i < secondPoint; i++)
+        {
+            chrom1.add(pa2.getChromosomes().get(i));
+            chrom2.add(pa1.getChromosomes().get(i));
+        }
+
+        for (int i = secondPoint; i < indSize; i++)
+        {
+            chrom1.add(pa1.getChromosomes().get(i));
+            chrom2.add(pa2.getChromosomes().get(i));
+        }
+
+        List<Individual> children = new ArrayList<>();
+        children.add(new Individual(chrom1));
+        children.add(new Individual(chrom2));
+
+        return children;
     }
 
     /**
      * Method that forces all individuals to calculate their fitness.
      */
-    public void updateFitness ()
+    public void updateFitness()
     {
 
     }

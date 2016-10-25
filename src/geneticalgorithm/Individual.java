@@ -21,6 +21,14 @@ public class Individual
         this.mutationProb = 15;
     }
 
+    public Individual(List<Integer> chromosomes)
+    {
+        this.chromosomes = chromosomes;
+        this.size = this.chromosomes.size();
+        this.fitness = 0;
+        this.mutationProb = 15;
+    }
+
     public List<Integer> getChromosomes()
     {
         return chromosomes;
