@@ -6,19 +6,22 @@ import flowshop.MatrixFromFile;
 import flowshop.RandomPermutation;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 class Population
 {
     private List<Individual> individuals;
-    private Random random = new Random();
+    private Random random;
     private MatrixFromFile matrix;
 
     private int indSize;
 
     Population(int size, MatrixFromFile matrixFromFile)
     {
+        random =  new Random();
+
         this.matrix = matrixFromFile;
 
         this.indSize = matrixFromFile.getOrderNum();
@@ -30,44 +33,22 @@ class Population
             individuals.add(new Individual(new RandomPermutation(matrixFromFile.getOrderNum())));
         }
     }
-
-    public List<Individual> getIndividuals()
-    {
-        return individuals;
-    }
-
-
-    public Individual selectFitest()
-    {
-        Individual winner = new Individual(new RandomPermutation(matrix.getOrderNum()));
-        winner.setFitness(999999999);
-
-        for (Individual ind : individuals)
-        {
-            if (ind.getFitness() < winner.getFitness())
-                winner = ind;
-        }
-
-        return winner;
-    }
-
-    /**
-     * Metod that checks if all individuals have the same values.
-     *
-     * @return
-     */
-    public boolean allEqual()
-    {
-
-        return false;
-    }
-
     /**
      * Method that creates a new generation crossing the previous generation.
      */
-    public void newGenByTournament()
+    void newGen()
     {
         ArrayList<Individual> newGen = new ArrayList<>();
+
+        individuals = sortIndividuals(individuals);
+
+        newGen.add(getBest());
+
+        for (int i = 0; i < individuals.size() / 10; i++)
+        {
+            newGen.add(individuals.get(i));
+        }
+
         while (newGen.size() < individuals.size())
         {
             newGen.addAll(crossoverOX(tournament(individuals), tournament(individuals)));
@@ -76,8 +57,24 @@ class Population
         individuals = newGen;
 
         mutateAll();
+    }
 
+    private List<Individual> sortIndividuals(List<Individual> individuals)
+    {
         updateFitness();
+
+        individuals.sort((o1, o2) -> Float.compare(o1.getFitness(),o2.getFitness()));
+
+        List<Individual> resorted = new ArrayList<>();
+
+        for (int i = individuals.size()-1; i >=0; i--)
+        {
+            resorted.add(individuals.get(i));
+        }
+
+        individuals = resorted;
+
+        return individuals;
     }
 
     /**
@@ -100,14 +97,17 @@ class Population
     {
         List<Individual> selected = new ArrayList<>();
         List<Integer> alreadySelected = new ArrayList<>();
-        int next;
+        int next = 0;
+
+        candidates = sortIndividuals(candidates);
+
 
         while (selected.size() < candidates.size() / 2 + 1)
         {
-            next = random.nextInt(candidates.size());
             if (!alreadySelected.contains(next))
                 selected.add(candidates.get(next));
             alreadySelected.add(next);
+            next++;
         }
 
         return selected;
@@ -210,8 +210,11 @@ class Population
         return best;
     }
 
-    public int getIndSize()
+    void print()
     {
-        return indSize;
+        for (Individual ind : individuals)
+        {
+            ind.print();
+        }
     }
 }
