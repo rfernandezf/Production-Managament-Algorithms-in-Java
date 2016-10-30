@@ -6,7 +6,6 @@ import flowshop.MatrixFromFile;
 import flowshop.RandomPermutation;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -44,11 +43,6 @@ class Population
 
         newGen.add(getBest());
 
-        for (int i = 0; i < individuals.size() / 10; i++)
-        {
-            newGen.add(individuals.get(i));
-        }
-
         while (newGen.size() < individuals.size())
         {
             newGen.addAll(crossoverOX(tournament(individuals), tournament(individuals)));
@@ -82,10 +76,7 @@ class Population
      */
     private void mutateAll()
     {
-        for (Individual ind : individuals)
-        {
-            ind.mutate();
-        }
+        individuals.forEach(Individual::mutate);
     }
 
     /**
@@ -116,7 +107,7 @@ class Population
     /**
      * Method that selects the better fitted individual from a part of the population.
      *
-     * @return
+     * @return the fittest.
      */
     private Individual tournament(List<Individual> candidates)
     {
@@ -139,8 +130,8 @@ class Population
     /**
      * Method that crosses the chromosomes of two individuals to create a new one.
      *
-     * @param pa1
-     * @param pa2
+     * @param pa1 first parent.
+     * @param pa2 second parent.
      * @return the new individuals.
      */
     private List<Individual> crossoverOX(Individual pa1, Individual pa2)
@@ -212,9 +203,6 @@ class Population
 
     void print()
     {
-        for (Individual ind : individuals)
-        {
-            ind.print();
-        }
+        individuals.forEach(Individual::print);
     }
 }

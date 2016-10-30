@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by Plata on 24/10/2016.
- */
+
 public class SimulatedAnnealing{
 
     private RandomPermutation randomPermutation;

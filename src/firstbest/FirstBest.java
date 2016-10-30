@@ -6,9 +6,6 @@ import flowshop.RandomPermutation;
 
 import java.util.*;
 
-/**
- * Created by Plata on 11/10/2016.
- */
 public class FirstBest {
 
     private RandomPermutation randomPermutation;

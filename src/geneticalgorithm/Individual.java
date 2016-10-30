@@ -5,15 +5,14 @@ import flowshop.RandomPermutation;
 import java.util.List;
 import java.util.Random;
 
-public class Individual
+class Individual
 {
     private List<Integer> chromosomes;
-    private Random random = new Random();
     private int size;
     private float fitness;
     private int mutationProb;
 
-    public Individual(RandomPermutation chromosomePermutation)
+    Individual(RandomPermutation chromosomePermutation)
     {
         this.chromosomes = chromosomePermutation.result();
         this.size = this.chromosomes.size();
@@ -21,7 +20,7 @@ public class Individual
         this.mutationProb = 15;
     }
 
-    public Individual(List<Integer> chromosomes)
+    Individual(List<Integer> chromosomes)
     {
         this.chromosomes = chromosomes;
         this.size = this.chromosomes.size();
@@ -29,22 +28,17 @@ public class Individual
         this.mutationProb = 15;
     }
 
-    public List<Integer> getChromosomes()
+    List<Integer> getChromosomes()
     {
         return chromosomes;
     }
 
-    public int size()
-    {
-        return size;
-    }
-
-    public float getFitness()
+    float getFitness()
     {
         return fitness;
     }
 
-    public boolean setFitness(float fitness)
+    boolean setFitness(float fitness)
     {
         this.fitness = fitness;
         return true;
@@ -53,7 +47,7 @@ public class Individual
     /**
      * Method that prints out the individual.
      */
-    public void print()
+    void print()
     {
         System.out.print("\n[");
         for (Integer chromosome : chromosomes)
@@ -66,7 +60,7 @@ public class Individual
     /**
      * Method that performs a mutation in the chromosomes depending on the probability.
      */
-    public void mutate()
+    void mutate()
     {
         Random random = new Random();
         if (mutationProb > random.nextInt(100) + 1)
