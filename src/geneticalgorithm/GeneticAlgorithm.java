@@ -15,8 +15,9 @@ public class GeneticAlgorithm
 
         this.population = new Population(50, inputmatrix);
         population.updateFitness();
+        population.printFitness();
 
-        this.itNumber = 100;
+        this.itNumber = 1000;
 
     }
 
@@ -32,13 +33,18 @@ public class GeneticAlgorithm
             population.newGen();
 
 
-            if((int)((iterations/itNumber)*100) > lastPercent) {
+            if ((int) ((iterations / itNumber) * 100) > lastPercent)
+            {
                 System.out.print((int) ((iterations / itNumber) * 100) + "%...");
                 lastPercent = (int) ((iterations / itNumber) * 100);
-                if (lastPercent % 10 == 0) System.out.print("\n");
+                if (lastPercent % 10 == 0)
+                {
+                    System.out.print("\n");
+                    //population.printFitness();
+                }
             }
 
-            if(iterations > itNumber)
+            if (iterations > itNumber)
             {
                 solutionFound = true;
             }

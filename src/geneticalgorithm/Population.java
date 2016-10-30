@@ -20,7 +20,7 @@ public class Population
 
     public Population(int size, MatrixFromFile matrixFromFile)
     {
-        random =  new Random();
+        random = new Random();
 
         this.matrix = matrixFromFile;
 
@@ -33,6 +33,7 @@ public class Population
             individuals.add(new Individual(new RandomPermutation(matrixFromFile.getOrderNum())));
         }
     }
+
     /**
      * Method that creates a new generation crossing the previous generation.
      */
@@ -52,17 +53,18 @@ public class Population
         individuals = newGen;
 
         mutateAll();
+        updateFitness();
     }
 
     private List<Individual> sortIndividuals(List<Individual> individuals)
     {
         updateFitness();
 
-        individuals.sort((o1, o2) -> Float.compare(o1.getFitness(),o2.getFitness()));
+        individuals.sort((o1, o2) -> Float.compare(o1.getFitness(), o2.getFitness()));
 
         List<Individual> resorted = new ArrayList<>();
 
-        for (int i = individuals.size()-1; i >=0; i--)
+        for (int i = individuals.size() - 1; i >= 0; i--)
         {
             resorted.add(individuals.get(i));
         }
@@ -89,17 +91,15 @@ public class Population
     {
         List<Individual> selected = new ArrayList<>();
         List<Integer> alreadySelected = new ArrayList<>();
-        int next = 0;
 
         candidates = sortIndividuals(candidates);
+        int next;
 
-
-        while (selected.size() < candidates.size() / 2 + 1)
+        while (selected.size() < candidates.size() / 10)
         {
-            if (!alreadySelected.contains(next))
-                selected.add(candidates.get(next));
+            next = random.nextInt(candidates.size());
+            selected.add(candidates.get(next));
             alreadySelected.add(next);
-            next++;
         }
 
         return selected;
@@ -185,21 +185,7 @@ public class Population
 
     Individual getBest()
     {
-        Individual best = null;
-        for (Individual ind : individuals)
-        {
-            if (best == null)
-            {
-                best = ind;
-            }
-            else
-            {
-                if (best.getFitness() < ind.getFitness())
-                    best = ind;
-            }
-        }
-
-        return best;
+        return tournament(individuals);
     }
 
     public List<Individual> getIndividuals()
@@ -210,5 +196,10 @@ public class Population
     public void print()
     {
         individuals.forEach(Individual::print);
+    }
+
+    void printFitness()
+    {
+        System.out.println("Best: " + getBest().getFitness());
     }
 }
