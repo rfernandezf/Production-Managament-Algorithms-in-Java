@@ -15,7 +15,7 @@ public class GeneticAlgorithm
 
         this.population = new Population(50, inputmatrix);
         population.updateFitness();
-        population.printFitness();
+        //population.printFitness();
 
         this.itNumber = 1000;
 

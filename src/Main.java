@@ -1,3 +1,5 @@
+import SimulatedAnnealing.SimulatedAnnealing;
+import firstbest.FirstBest;
 import flowshop.FlowShop;
 import flowshop.MatrixFromFile;
 import flowshop.RandomPermutation;
@@ -35,7 +37,7 @@ public class Main
         FlowShop randomSearchFlowshop = new FlowShop(initialMatrix, randomSearchSolution);
         System.out.println("Fmed: " + randomSearchFlowshop.fmed());
 
-        /*System.out.println("\n\nFirst Best solution:");
+        System.out.println("\n\nFirst Best solution:");
         System.out.println("Processing. Please wait...\n");
         start = System.currentTimeMillis();
         List<Integer> firstBestSolution = new FirstBest(permutation, initialMatrix).run();
@@ -51,7 +53,7 @@ public class Main
         System.out.println("Finished in: " + (System.currentTimeMillis() - start)/1000 + "s.");
         System.out.println("Best solution: " + simulatedAnnealingSolution);
         FlowShop simulatedAnnealingFlowShop = new FlowShop(initialMatrix,simulatedAnnealingSolution);
-        System.out.println("Fmed: " + simulatedAnnealingFlowShop.fmed());*/
+        System.out.println("Fmed: " + simulatedAnnealingFlowShop.fmed());
 
         System.out.println("\n\nGenetic Algorithm solution:");
         System.out.println("Processing. Please wait...\n");
