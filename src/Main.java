@@ -18,9 +18,7 @@ public class Main
         long start;
         MatrixFromFile initialMatrix = null;
         try {
-            initialMatrix = new MatrixFromFile("rsc/Doc11.txt");
-            //MatrixFromFile initialMatrix = new MatrixFromFile("rsc/ejem_clase1.txt");
-
+            initialMatrix = new MatrixFromFile(args[0]);
 
             System.out.print("Number of orders: " + initialMatrix.getOrderNum() + ".\n");
             System.out.print("Number of machines: " + initialMatrix.getMachNum() + ".\n");
@@ -70,6 +68,11 @@ public class Main
         }
         catch (FileNotFoundException e)
         {
+            System.out.println("Exiting...");
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            System.out.println("No arguments were passed.");
             System.out.println("Exiting...");
         }
 
