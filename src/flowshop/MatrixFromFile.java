@@ -14,7 +14,8 @@ public class MatrixFromFile
     private List<List<Integer>> inputMatrix = new ArrayList<>();
 
 
-    public MatrixFromFile(String fileToRead) throws FileNotFoundException {
+    public MatrixFromFile(String fileToRead) throws FileNotFoundException
+    {
         inputMatrix = readFile(new File(fileToRead));
     }
 
@@ -50,7 +51,7 @@ public class MatrixFromFile
 
         } catch (FileNotFoundException exception)
         {
-            System.out.println("File " + file.getAbsolutePath() +" not found.");
+            System.out.println("File " + file.getAbsolutePath() + " not found.");
             throw new FileNotFoundException();
         }
 
@@ -87,5 +88,13 @@ public class MatrixFromFile
         }
 
         return clone;
+    }
+
+    public void printMatrix()
+    {
+        for (List<Integer> row : inputMatrix)
+        {
+            System.out.println(row);
+        }
     }
 }
