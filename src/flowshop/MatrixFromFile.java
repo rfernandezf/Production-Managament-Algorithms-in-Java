@@ -11,15 +11,14 @@ public class MatrixFromFile
 
     private int orderNum;
     private int machNum;
-    private List<List<Integer>> inputMatrix = new ArrayList<List<Integer>>();
+    private List<List<Integer>> inputMatrix = new ArrayList<>();
 
 
-    public MatrixFromFile(String fileToRead)
-    {
+    public MatrixFromFile(String fileToRead) throws FileNotFoundException {
         inputMatrix = readFile(new File(fileToRead));
     }
 
-    public List<List<Integer>> readFile(File file)
+    private List<List<Integer>> readFile(File file) throws FileNotFoundException
     {
         List<List<Integer>> matrix = new ArrayList<>();
 
@@ -51,8 +50,8 @@ public class MatrixFromFile
 
         } catch (FileNotFoundException exception)
         {
-            System.out.println("File not found.");
-            exception.printStackTrace();
+            System.out.println("File " + file.getAbsolutePath() +" not found.");
+            throw new FileNotFoundException();
         }
 
         return matrix;
@@ -64,19 +63,9 @@ public class MatrixFromFile
         return orderNum;
     }
 
-    public void setOrderNum(int orderNum)
-    {
-        this.orderNum = orderNum;
-    }
-
     public int getMachNum()
     {
         return machNum;
-    }
-
-    public void setMachNum(int machNum)
-    {
-        this.machNum = machNum;
     }
 
     public List<List<Integer>> getInputMatrix()
@@ -84,7 +73,7 @@ public class MatrixFromFile
         return inputMatrix;
     }
 
-    public List<List<Integer>> cloneMatrix()
+    List<List<Integer>> cloneMatrix()
     {
         List<List<Integer>> clone = new ArrayList<>();
         List<Integer> rowClone;
@@ -92,10 +81,7 @@ public class MatrixFromFile
         {
             rowClone = new ArrayList<>();
 
-            for (int number : row)
-            {
-                rowClone.add(number);
-            }
+            rowClone.addAll(row);
 
             clone.add(rowClone);
         }
