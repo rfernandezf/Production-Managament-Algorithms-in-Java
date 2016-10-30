@@ -9,15 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-class Population
+public class Population
 {
+
     private List<Individual> individuals;
     private Random random;
     private MatrixFromFile matrix;
 
     private int indSize;
 
-    Population(int size, MatrixFromFile matrixFromFile)
+    public Population(int size, MatrixFromFile matrixFromFile)
     {
         random =  new Random();
 
@@ -25,7 +26,7 @@ class Population
 
         this.indSize = matrixFromFile.getOrderNum();
 
-        individuals = new ArrayList<>(size);
+        individuals = new ArrayList<>();
 
         for (int i = 0; i < size; i++)
         {
@@ -201,7 +202,12 @@ class Population
         return best;
     }
 
-    void print()
+    public List<Individual> getIndividuals()
+    {
+        return individuals;
+    }
+
+    public void print()
     {
         individuals.forEach(Individual::print);
     }

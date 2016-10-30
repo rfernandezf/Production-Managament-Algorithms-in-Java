@@ -43,7 +43,6 @@ public class GeneticAlgorithm
                 solutionFound = true;
             }
 
-            population.print();
         }
 
         return population.getBest().getChromosomes();

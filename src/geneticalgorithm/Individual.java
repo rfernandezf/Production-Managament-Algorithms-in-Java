@@ -5,7 +5,7 @@ import flowshop.RandomPermutation;
 import java.util.List;
 import java.util.Random;
 
-class Individual
+public class Individual
 {
     private List<Integer> chromosomes;
     private int size;
@@ -28,7 +28,7 @@ class Individual
         this.mutationProb = 15;
     }
 
-    List<Integer> getChromosomes()
+    public List<Integer> getChromosomes()
     {
         return chromosomes;
     }
