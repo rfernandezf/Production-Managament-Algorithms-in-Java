@@ -1,6 +1,6 @@
 package geneticalgorithm;
 
-import flowshop.RandomPermutation;
+import flowshop.Permutation;
 
 import java.util.List;
 import java.util.Random;
@@ -12,7 +12,7 @@ public class Individual
     private float fitness;
     private int mutationProb;
 
-    Individual(RandomPermutation chromosomePermutation)
+    Individual(Permutation chromosomePermutation)
     {
         this.chromosomes = chromosomePermutation.result();
         this.size = this.chromosomes.size();

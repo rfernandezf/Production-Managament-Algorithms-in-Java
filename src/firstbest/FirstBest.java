@@ -2,17 +2,17 @@ package firstbest;
 
 import flowshop.FlowShop;
 import flowshop.MatrixFromFile;
-import flowshop.RandomPermutation;
+import flowshop.Permutation;
 
 import java.util.*;
 
 public class FirstBest {
 
-    private RandomPermutation randomPermutation;
+    private Permutation permutation;
     private MatrixFromFile inputMatrix;
 
-    public FirstBest(RandomPermutation randomPermutation, MatrixFromFile inputMatrix) {
-        this.randomPermutation =randomPermutation;
+    public FirstBest(Permutation permutation, MatrixFromFile inputMatrix) {
+        this.permutation = permutation;
         this.inputMatrix = inputMatrix;
     }
 
@@ -22,7 +22,7 @@ public class FirstBest {
         List<Integer> actualSolution = new ArrayList<Integer>();
         List<Integer> otherSolution = new ArrayList<Integer>();
         List<Float> fmeds = new ArrayList<Float>();
-        actualSolution = randomPermutation.result();
+        actualSolution = permutation.result();
         List<List<Integer>> permutations = new ArrayList<List<Integer>>();
         List<Integer> bestPermutation = new ArrayList<Integer>();
         FlowShop actualFlowShop;
@@ -30,7 +30,7 @@ public class FirstBest {
         FlowShop bestSolutionFlowShop;
         float bestFmed = 0;
         int bestFmedIndex = 0;
-        bestPermutation = randomPermutation.clonePermutation();
+        bestPermutation = permutation.clonePermutation();
 
         boolean end = false;
         while(end == false) {

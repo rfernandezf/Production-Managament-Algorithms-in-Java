@@ -2,21 +2,22 @@ package SimulatedAnnealing;
 
 import flowshop.FlowShop;
 import flowshop.MatrixFromFile;
-import flowshop.RandomPermutation;
+import flowshop.Permutation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 
 public class SimulatedAnnealing{
 
-    private RandomPermutation randomPermutation;
+    private Permutation permutation;
     private MatrixFromFile inputMatrix;
 
-    public SimulatedAnnealing(RandomPermutation randomPermutation, MatrixFromFile inputMatrix)
+    public SimulatedAnnealing(Permutation permutation, MatrixFromFile inputMatrix)
     {
-        this.randomPermutation =randomPermutation;
+        this.permutation = permutation;
         this.inputMatrix = inputMatrix;
     }
 
@@ -33,15 +34,15 @@ public class SimulatedAnnealing{
         float bestFmed;
         int bestFmedIndex;
         Random rnd = new Random();
-        bestPermutation = randomPermutation.clonePermutation();
+        bestPermutation = permutation.clonePermutation();
 
-        float initialTemperature = (int)(new FlowShop(inputMatrix, this.randomPermutation.result()).fmed() *0.4);
+        float initialTemperature = (int)(new FlowShop(inputMatrix, this.permutation.result()).fmed() *0.2);
         float temperature = initialTemperature;
         int lastPercent = 0;
+        int iterationCounter = 0;
         System.out.println("Initial temperature: " + initialTemperature);
         while(temperature != 0) {
             //Initial values
-
             fmeds= new ArrayList<>();
             permutations= new ArrayList<>();
             otherSolution= new ArrayList<>();
@@ -84,34 +85,50 @@ public class SimulatedAnnealing{
                         bestFmed = actualFlowShop.fmed();
                         bestFmedIndex = fmeds.size() - 1;
                     }
+                    Collections.shuffle(permutations);
                 }
             }
 
-            bestNeightbourFlowShop = new FlowShop(inputMatrix, permutations.get(bestFmedIndex));
-            bestSolutionFlowShop = new FlowShop(inputMatrix, bestPermutation);
-            costDifference = bestNeightbourFlowShop.fmed() - bestSolutionFlowShop.fmed();
+
 
             //costDifference = costCandidateSolution - costActualSolution
             // If a random number between 0 and 1 < e^(-costDifference/temperature) OR costDifference <0..
             //actualSoution = candidateSolution
-            if(rnd.nextFloat() < Math.exp(-costDifference/temperature) || (costDifference <0)){
-                //System.out.println("ME QUEDO LA MALA");
-                bestPermutation = permutations.get(bestFmedIndex);
+            for (int i = 0; i < permutations.size(); i++){
+
+                bestNeightbourFlowShop = new FlowShop(inputMatrix, permutations.get(i));
+                bestSolutionFlowShop = new FlowShop(inputMatrix, bestPermutation);
+                costDifference = bestNeightbourFlowShop.fmed() - bestSolutionFlowShop.fmed();
+                if(rnd.nextFloat() < Math.exp(-costDifference/temperature) || (costDifference <0)){
+                    bestPermutation = permutations.get(i);
+                    i = permutations.size();
+
+                }
+
             }
+
 
                 //System.out.println("ME QUEDO LA BUENA");
                 //bestPermutation =
 
-            //Decrease temperature (I can do it in other ways, i.e. exponentially...) (More accuracy than the linear method)
-            temperature--;
+            //Decrease temperature (Cauchy)
+            temperature = initialTemperature/(1 + (float)(iterationCounter));
+            iterationCounter++;
 
-            if((int)((initialTemperature-temperature/initialTemperature)*100) > lastPercent) {
-                System.out.print((int)(((initialTemperature-temperature)/initialTemperature)*100) + "%...");
-                lastPercent = (int)((initialTemperature-temperature/initialTemperature)*100);
-                if (lastPercent % 10 == 0) System.out.print("\n");
+            //Code for print the process and the decrease of temperature
+            if (iterationCounter %250 == 0) {
+                System.out.print("\n");
             }
 
-            if(temperature == 0){
+            else if (iterationCounter %50 == 0) {
+                System.out.print("Temperature: " + temperature);
+            }
+
+            else if (iterationCounter %20 == 0) {
+                System.out.print(".");
+            }
+
+            if(temperature <= 1){
                 break;
             }
 

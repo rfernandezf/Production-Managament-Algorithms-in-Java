@@ -3,7 +3,7 @@ package geneticalgorithm;
 
 import flowshop.FlowShop;
 import flowshop.MatrixFromFile;
-import flowshop.RandomPermutation;
+import flowshop.Permutation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Population
 
         for (int i = 0; i < size; i++)
         {
-            individuals.add(new Individual(new RandomPermutation(matrixFromFile.getOrderNum())));
+            individuals.add(new Individual(new Permutation(matrixFromFile.getOrderNum())));
         }
     }
 
@@ -116,7 +116,7 @@ public class Population
 
         updateFitness();
 
-        Individual winner = new Individual(new RandomPermutation(matrix.getOrderNum()));
+        Individual winner = new Individual(new Permutation(matrix.getOrderNum()));
         winner.setFitness(999999999);
 
         for (Individual ind : participants)

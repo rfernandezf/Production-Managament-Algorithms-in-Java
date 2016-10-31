@@ -2,7 +2,7 @@ package randomsearch;
 
 import flowshop.FlowShop;
 import flowshop.MatrixFromFile;
-import flowshop.RandomPermutation;
+import flowshop.Permutation;
 
 import java.util.List;
 
@@ -21,14 +21,14 @@ public class RandomSearch
 
     public List<Integer> run()
     {
-        List<Integer> bestSolution = new RandomPermutation(numberOfOrders).result();
+        List<Integer> bestSolution = new Permutation(numberOfOrders).result();
         List<Integer> newSolution;
         FlowShop bestFlowshop = new FlowShop(inputMatrix, bestSolution);
         FlowShop newFlowshop;
         for (int i = 1; i < numberOfIterations; i++)
         {
 
-            newSolution = new RandomPermutation(numberOfOrders).result();
+            newSolution = new Permutation(numberOfOrders).result();
             newFlowshop = new FlowShop(inputMatrix, newSolution);
             if (newFlowshop.fmed() < bestFlowshop.fmed())
             {
