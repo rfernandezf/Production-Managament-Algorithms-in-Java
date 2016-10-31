@@ -22,17 +22,16 @@ public class SimulatedAnnealing{
 
     public List<Integer> run()
     {
-        List<Integer> actualSolution = new ArrayList<Integer>();
-        List<Integer> otherSolution = new ArrayList<Integer>();
-        List<Float> fmeds = new ArrayList<Float>();
-        actualSolution = randomPermutation.result();
-        List<List<Integer>> permutations = new ArrayList<List<Integer>>();
-        List<Integer> bestPermutation = new ArrayList<Integer>();
+        List<Integer> actualSolution;
+        List<Integer> otherSolution;
+        List<Float> fmeds;
+        List<List<Integer>> permutations;
+        List<Integer> bestPermutation;
         FlowShop actualFlowShop;
         FlowShop bestNeightbourFlowShop;
         FlowShop bestSolutionFlowShop;
-        float bestFmed = 0;
-        int bestFmedIndex = 0;
+        float bestFmed;
+        int bestFmedIndex;
         Random rnd = new Random();
         bestPermutation = randomPermutation.clonePermutation();
 
@@ -43,16 +42,15 @@ public class SimulatedAnnealing{
         while(temperature != 0) {
             //Initial values
 
-            fmeds= new ArrayList<Float>();
-            permutations= new ArrayList<List<Integer>>();
-            otherSolution= new ArrayList<Integer>();
-            actualSolution= new ArrayList<Integer>();
+            fmeds= new ArrayList<>();
+            permutations= new ArrayList<>();
+            otherSolution= new ArrayList<>();
             actualSolution = bestPermutation;
             actualFlowShop = new FlowShop(inputMatrix, actualSolution);
             fmeds.add(actualFlowShop.fmed());
             permutations.add(actualSolution);
-            int temp = 0;
-            int temp2 = 0;
+            int temp;
+            int temp2;
             float costDifference;
             bestFmed = actualFlowShop.fmed();
             bestFmedIndex = 0;
@@ -74,7 +72,7 @@ public class SimulatedAnnealing{
                     otherSolution.set(j, temp);
 
                     //Clone of otherSolution (bcs of some errors with Java management of memory...)
-                    permutations.add(new ArrayList<Integer>());
+                    permutations.add(new ArrayList<>());
                     for (int number : otherSolution) {
 
                         permutations.get(permutations.size()-1).add(number);
@@ -101,10 +99,8 @@ public class SimulatedAnnealing{
                 bestPermutation = permutations.get(bestFmedIndex);
             }
 
-            else{
                 //System.out.println("ME QUEDO LA BUENA");
                 //bestPermutation =
-            }
 
             //Decrease temperature (I can do it in other ways, i.e. exponentially...) (More accuracy than the linear method)
             temperature--;
