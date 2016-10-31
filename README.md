@@ -5,7 +5,7 @@
 To run, just type:
 
 ```
-java -jar Practica01_OrgDestEmp.jar [nameOfTheInputFile]
+java -jar Practica01_OrgGestEmp.jar [nameOfTheInputFile]
 ```
 
 on a command line (provided you have the java path correctly configured).
