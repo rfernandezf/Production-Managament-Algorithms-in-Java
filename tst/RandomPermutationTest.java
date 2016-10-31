@@ -1,4 +1,4 @@
-import flowshop.RandomPermutation;
+import flowshop.Permutation;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,19 +13,19 @@ public class RandomPermutationTest
     @Test
     public void randomnessTest() throws Exception
     {
-        List<RandomPermutation> permutations = new ArrayList<>();
+        List<Permutation> permutations = new ArrayList<>();
 
         for (int i = 0; i < 50; i++)
         {
-            permutations.add(new RandomPermutation(50));
+            permutations.add(new Permutation(50));
         }
 
-        Iterator<RandomPermutation> it =  permutations.iterator();
+        Iterator<Permutation> it =  permutations.iterator();
 
         boolean same = false;
 
-        RandomPermutation previous = it.next();
-        RandomPermutation current;
+        Permutation previous = it.next();
+        Permutation current;
 
         while (it.hasNext())
         {
