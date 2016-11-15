@@ -128,7 +128,7 @@ public class SimulatedAnnealing{
                 System.out.print(".");
             }
 
-            if(temperature <= 1){
+            if(temperature <= 1.5){
                 break;
             }
 

@@ -13,11 +13,11 @@ public class GeneticAlgorithm
     public GeneticAlgorithm(MatrixFromFile inputmatrix)
     {
 
-        this.population = new Population(50, inputmatrix);
+        this.population = new Population(60, inputmatrix);
         population.updateFitness();
         //population.printFitness();
 
-        this.itNumber = 1000;
+        this.itNumber = 100;
 
     }
 
