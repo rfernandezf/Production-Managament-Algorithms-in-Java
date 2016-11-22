@@ -36,7 +36,7 @@ public class SimulatedAnnealing{
         Random rnd = new Random();
         bestPermutation = permutation.clonePermutation();
 
-        float initialTemperature = (int)(new FlowShop(inputMatrix, this.permutation.result()).fmed() *0.2);
+        float initialTemperature = (int)(new FlowShop(inputMatrix, this.permutation.result()).fmed() *0.15);
         float temperature = initialTemperature;
         int lastPercent = 0;
         int iterationCounter = 0;
@@ -128,7 +128,7 @@ public class SimulatedAnnealing{
                 System.out.print(".");
             }
 
-            if(temperature <= 1.5){
+            if(temperature <= 0.85){
                 break;
             }
 
