@@ -13,7 +13,7 @@ public class GeneticAlgorithm
     public GeneticAlgorithm(MatrixFromFile inputmatrix)
     {
 
-        this.population = new Population(60, inputmatrix);
+        this.population = new Population(50, inputmatrix);
         population.updateFitness();
         //population.printFitness();
 
